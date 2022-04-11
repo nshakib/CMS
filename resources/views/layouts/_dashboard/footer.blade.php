@@ -1,7 +1,7 @@
 <footer class="py-4 bg-light mt-auto">
     <div class="container-fluid">
        <div class="d-flex align-items-center justify-content-between small">
-          <div class="text-muted">Copyright © Your Website 2021</div>
+          <div class="text-muted">Copyright © {{ config('app.name') }} 2022</div>
           <div>
              <a href="#">Privacy Policy</a>
              ·

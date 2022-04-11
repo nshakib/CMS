@@ -45,11 +45,13 @@
                 {{ Auth::user()->name }}
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">Profile</a>
+                {{-- Profile --}}
+                <a class="dropdown-item" href="#">{{ trans('dashboard.link.profile') }}</a>
                 <div class="dropdown-divider"></div>
+                {{-- Logout --}}
                 <a class="dropdown-item" href="{{ route('logout') }}" 
                 onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                    Logout
+                   {{trans('dashboard.link.logout')}}
                 </a>
 
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

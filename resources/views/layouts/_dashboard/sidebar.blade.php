@@ -1,56 +1,74 @@
 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
    <div class="sb-sidenav-menu">
       <div class="nav">
+         {{-- Link dashboard --}}
          <a class="nav-link active" href="#">
             <div class="sb-nav-link-icon">
                <i class="fas fa-tachometer-alt"></i>
             </div>
-            Dashboard
+            {{ trans('dashboard.link.dashboard') }}
          </a>
-         <div class="sb-sidenav-menu-heading">Master</div>
+         {{-- Menu: master --}}
+         <div class="sb-sidenav-menu-heading">
+            {{ trans('dashboard.menu.master') }}
+         </div>
 
+         {{-- Post --}}
          <a class="nav-link" href="#">
             <div class="sb-nav-link-icon">
                <i class="far fa-newspaper"></i>
             </div>
-            Posts
+            {{ trans('dashboard.link.posts') }}
          </a>
+         {{-- Categories --}}
          <a class="nav-link" href="#">
             <div class="sb-nav-link-icon">
                <i class="fas fa-bookmark"></i>
             </div>
-            Categories
+            {{ trans('dashboard.link.categories') }}
          </a>
+         {{-- Tags --}}
          <a class="nav-link" href="#">
             <div class="sb-nav-link-icon">
                <i class="fas fa-tags"></i>
             </div>
-            Tags
+            {{ trans('dashboard.link.tags') }}
          </a>
-         <div class="sb-sidenav-menu-heading">User permission</div>
+         {{-- user permission --}}
+         <div class="sb-sidenav-menu-heading">
+            {{ trans('dashboard.menu.user_permission') }}
+         </div>
+
+         {{-- user --}}
          <a class="nav-link" href="#">
             <div class="sb-nav-link-icon">
                <i class="fas fa-user"></i>
             </div>
-            User
+            {{ trans('dashboard.link.users') }}
          </a>
+         {{-- Role --}}
          <a class="nav-link" href="#">
             <div class="sb-nav-link-icon">
                <i class="fas fa-user-shield"></i>
             </div>
-            Role
+            {{ trans('dashboard.link.roles') }}
          </a>
-         <div class="sb-sidenav-menu-heading">Settings</div>
+         {{-- setting --}}
+         <div class="sb-sidenav-menu-heading">
+            {{ trans('dashboard.menu.setting') }}
+         </div>
+         {{-- File manager --}}
          <a class="nav-link" href="#">
             <div class="sb-nav-link-icon">
                <i class="fas fa-photo-video"></i>
             </div>
-            File manager
+            {{ trans('dashboard.link.file_manager') }}
          </a>
       </div>
    </div>
+   {{-- Logged in as: --}}
    <div class="sb-sidenav-footer">
-      <div class="small">Logged in as:</div>
+      <div class="small">{{ trans('dashboard.label.logged_in_as') }}:</div>
       <!-- show username -->
       {{ Auth::user()->name }}
    </div>

@@ -23,17 +23,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('layouts.dashboard');
-});
-
 Auth::routes([
     'register' => false
 ]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //dashboard
-Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function(){
+Route::group(['prefix' => 'dashboard', 'middleware' => ['web','auth']], function(){
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
 });
