@@ -17,7 +17,7 @@ return [
     'link' => [
         'dashboard' => 'ড্যাশবোর্ড',
         'posts' => 'পোস্টিং',
-        'categories' => 'বিভাগ',
+        'categories' => 'ক্যাটাগরি',
         'tags' => 'ট্যাগ  ',
         'file_manager' => 'নথি ব্যবস্থাপক',
         'roles' => 'ভূমিকা',

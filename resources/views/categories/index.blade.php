@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('title')
-    Categories
+{{ trans('categories.title.index') }}
 @endsection
 
 @section('breadcrumbs')
@@ -17,7 +17,8 @@
                 <div class="col-md-6">
                    <form action="" method="GET">
                       <div class="input-group">
-                         <input name="keyword" type="search" class="form-control" placeholder="Search for categories">
+                         <input name="keyword" type="search" class="form-control" 
+                         placeholder="{{ trans('categories.form_control.input.search.placeholder') }}">
                          <div class="input-group-append">
                             <button class="btn btn-primary" type="submit">
                                <i class="fas fa-search"></i>
@@ -27,8 +28,8 @@
                    </form>
                 </div>
                 <div class="col-md-6">
-                   <a href="#" class="btn btn-primary float-right" role="button">
-                      Add new
+                   <a href="{{ route('categories.create') }}" class="btn btn-primary float-right" role="button">
+                     {{ trans('categories.button.create.value') }}
                       <i class="fas fa-plus-square"></i>
                    </a>
                 </div>
@@ -37,6 +38,7 @@
           <div class="card-body">
              <ul class="list-group list-group-flush">
                 <!-- list category -->
+                @include('categories._category-list', ['categories' => $categories, 'count' => 0])
              </ul>
           </div>
        </div>
