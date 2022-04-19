@@ -36,5 +36,6 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['web','auth']], function
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
 
     //categories
+    Route::get('/categories/select', [CategoryController::class, 'select'])->name('category.select');
     Route::resource('/categories',CategoryController::class);
 });
