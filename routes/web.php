@@ -38,4 +38,9 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['web','auth']], function
     //categories
     Route::get('/categories/select', [CategoryController::class, 'select'])->name('category.select');
     Route::resource('/categories',CategoryController::class);
+
+    //file manager
+    Route::group(['prefix' => 'filemanager'], function () {
+        \UniSharp\LaravelFilemanager\Lfm::routes();
+    });
 });

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Throwable;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CategoryController extends Controller
 {
@@ -50,7 +53,52 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //category validation process
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'title'=>'required|string|max:60',
+                'slug'=>'required|string|unique:categories,slug',
+                'thumbnail'=>'required',
+                'description'=>'required|string|max:240',
+            ],
+            [],
+            $this->attribute()
+        );
+
+        if($validator->fails()){
+            if($request->has('parent_category')){
+                $request['parent_category']=Category::select('id', 'title')->find($request->parent_category);
+            }
+            return redirect()->back()->withInput($request->all())->withErrors($validator);
+        }
+
+        //category insert process
+        try{
+            Category::create(
+                [
+                    'title'=> $request->title,
+                    'slug'=> $request->slug,
+                    'thumbnail'=> parse_url($request->thumbnail)['path'],
+                    'description'=> $request->description,
+                    'parent_id'=> $request->parent_category
+                ]);
+                Alert::success(
+                    trans('categories.alert.create.title'),
+                    trans('categories.alert.create.message.success'),
+                );
+                return redirect()->route('categories.index');
+        }
+        
+        catch(\Throwable $th){
+            if($request->has('parent_category')){
+                $request['parent_category']=Category::select('id', 'title')->find($request->parent_category);
+            }
+            Alert::error(trans('categories.alert.create.title'),
+            trans('categories.alert.create.message.error', ["error" => $th->getMessage()]));
+            return redirect()->back()->withInput($request->all())->withErrors($validator);
+        }
+        
     }
 
     /**
@@ -72,7 +120,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('categories.edit',compact('category'));
     }
 
     /**
@@ -96,5 +144,16 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         //
+    }
+
+    public function attribute()
+    {
+        return [
+
+            'title' => trans('categories.form_control.input.title.attribute'),
+            'slug' => trans('categories.form_control.input.slug.attribute'),
+            'thumbnail' => trans('categories.form_control.input.thumbnail.attribute'),
+            'description' => trans('categories.form_control.textarea.description.attribute'),
+        ];
     }
 }

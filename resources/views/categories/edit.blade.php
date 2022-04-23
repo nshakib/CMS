@@ -1,11 +1,11 @@
 @extends('layouts.dashboard')
 
 @section('title')
-    {{ trans('categories.title.create') }}
+    {{ trans('categories.title.edit') }}
 @endsection
 
 @section('breadcrumbs')
-    {{ Breadcrumbs::render('add_category') }}
+    {{ Breadcrumbs::render('edit_category_title',$category) }}
 @endsection
 
 @section('content')
@@ -20,7 +20,7 @@
                             <label for="input_category_title" class="font-weight-bold">
                                 {{ trans('categories.form_control.input.title.label') }}
                             </label>
-                            <input id="input_category_title" value="{{ old('title') }}" name="title" type="text"
+                            <input id="input_category_title" value="{{ old('title',$category->title) }}" name="title" type="text"
                                 placeholder="{{ trans('categories.form_control.input.title.placeholder') }}"
                                 class="form-control @error('title') is-invalid @enderror" />
                             @error('title')
@@ -34,7 +34,7 @@
                             <label for="input_category_slug" class="font-weight-bold">
                                 {{ trans('categories.form_control.input.slug.label') }}
                             </label>
-                            <input id="input_category_slug" value="{{ old('slug') }}" name="slug" type="text"
+                            <input id="input_category_slug" value="{{ old('slug', $category->slug) }}" name="slug" type="text"
                                 class="form-control @error('slug') is-invalid @enderror"
                                 placeholder="{{ trans('categories.form_control.input.slug.placeholder') }}" readonly />
                             @error('slug')
@@ -56,7 +56,7 @@
                                         {{ trans('categories.button.browse.value') }}
                                     </button>
                                 </div>
-                                <input id="input_category_thumbnail" name="thumbnail" value="{{ old('thumbnail') }}" type="text"
+                                <input id="input_category_thumbnail" name="thumbnail" value="{{ old('thumbnail',asset($category->thumbnail)) }}" type="text"
                                     class="form-control @error('thumbnail') is-invalid @enderror"
                                     placeholder="{{ trans('categories.form_control.input.thumbnail.placeholder') }}"
                                     readonly />
@@ -78,8 +78,9 @@
                                 data-placeholder="{{ trans('categories.form_control.select.parent_category.placeholder') }}"
                                 class="custom-select w-100">
 
-                                @if (old('parent_category'))
-                                    <option value="{{ old('parent_category')->id }}" selected>{{ old('parent_category')->title }}
+                                @if (old('parent_category', $category->parent))
+                                    <option value="{{ old('parent_category',$category->parent)->id }}" 
+                                        selected>{{ old('parent_category',$category->parent)->title }}
                                     </option>
                                 @endif
                             </select>
@@ -91,7 +92,7 @@
                             </label>
                             <textarea id="input_category_description" name="description" class="form-control @error('thumbnail') is-invalid @enderror"
                                 placeholder="{{ trans('categories.form_control.textarea.description.placeholder') }}"
-                                rows="3">{{ old('description') }}</textarea>
+                                rows="3">{{ old('description',$category->description) }}</textarea>
                                 @error('description')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -102,7 +103,8 @@
                             <a class="btn btn-warning px-4"
                                 href="{{ route('categories.index') }}">{{ trans('categories.button.back.value') }}</a>
                             <button type="submit"
-                                class="btn btn-primary px-4">{{ trans('categories.button.save.value') }}</button>
+                                class="btn btn-primary px-4">{{ trans('categories.button.edit.value') }}
+                            </button>
                         </div>
                     </form>
                 </div>
