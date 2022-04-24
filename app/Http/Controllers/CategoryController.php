@@ -29,7 +29,7 @@ class CategoryController extends Controller
             $categories->OnlyParent();
         }
         
-        return view('categories.index',['categories'=>$categories->get()]);
+        return view('categories.index',['categories'=>$categories->paginate(10)->appends(['keyword'=>$request->get('keyword')]),]);
     }
 
 
