@@ -16,6 +16,8 @@
    <!-- icon flag -->
    <link rel="stylesheet" href="{{ asset('vendor/flag-icon-css/css/flag-icon.min.css') }}">
 
+   {{-- css internal --}}
+   @stack('css-internal')
    {{-- css external --}}
    @stack('css-external')
 </head>
@@ -59,9 +61,11 @@
    <!-- my-dashboard -->
    <script src="{{ asset('vendor/my-dashboard/js/dashboard.js') }}"></script>
    @include('sweetalert::alert')
+   {{-- javascript internal --}}
+   @stack('javascript-internal')
+
    {{-- javascript external --}}
    @stack('javascript-external')
-   @stack('javascript-internal')
 </body>
 
 </html>

@@ -7,7 +7,7 @@
     </label>
     <div>
       <!-- detail -->
-      <a href="#" class="btn btn-sm btn-primary" role="button">
+      <a href="{{ route('categories.show', ['category' => $category]) }}" class="btn btn-sm btn-primary" role="button">
         <i class="fas fa-eye"></i>
       </a>
       <!-- edit -->
@@ -15,14 +15,21 @@
         <i class="fas fa-edit"></i>
       </a>
       <!-- delete -->
-      <form class="d-inline" action="" method="POST">
+      <form class="d-inline" action="{{ route('categories.destroy', ['category' => $category]) }}" role="alert" method="POST"
+      alert-title="{{ trans('categories.alert.delete.title') }}" 
+      alert-text="{{ trans('categories.alert.delete.message.confirm',['title' => $category->title]) }}" 
+      alert-btn-cancel="{{ trans('categories.button.cancel.value') }}"
+      alert-btn-yes="{{ trans('categories.button.delete.value') }}"
+      >
+      @csrf
+      @method('DELETE')
         <button type="submit" class="btn btn-sm btn-danger">
           <i class="fas fa-trash"></i>
         </button>
       </form>
     </div>
     <!-- todo:show subcategory -->
-    @if ($category->descendants)
+    @if ($category->descendants && !trim(request()->get('keyword')))
         @include('categories._category-list',['categories' => $category->descendants, 'count' => $count + 2])
     @else
         

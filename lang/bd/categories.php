@@ -9,6 +9,12 @@ return [
         'edit' => 'সম্পাদনা ক্যাটাগরি',
         'detail' => 'বিস্তারিত ক্যাটাগরি',
     ],
+    'label' => [
+        'no_data' => [
+            'fetch' => "No category data yet",
+            'search' => ":keyword category not found",
+        ]
+        ],
     'form_control' => [
         'input' => [
             'title' => [
@@ -58,7 +64,7 @@ return [
             'value' => 'সম্পাদনা'
         ],
         'delete' => [
-            'value' => 'বাদ দিন'
+            'value' => 'মুছে ফেলুন'
         ],
         'cancel' => [
             'value' => 'বাতিল করুন'
@@ -88,7 +94,7 @@ return [
         'delete' => [
             'title' => 'ক্যাটাগরি মুছুন',
             'message' => [
-                'confirm' => "আপনি কি নিশ্চিত যে আপনি : শিরোনাম বিভাগটি মুছে ফেলতে চান?",
+                'confirm' => "আপনি কি নিশ্চিত যে আপনি :title বিভাগটি মুছে ফেলতে চান?",
                 'success' => "ক্যাটাগরি সফলভাবে মুছে ফেলা হয়েছে.",
                 'error' => "ক্যাটাগরি মুছে ফেলার সময় একটি ত্রুটি ঘটেছে৷ : ত্রুটি"
             ]

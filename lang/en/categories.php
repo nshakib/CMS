@@ -9,6 +9,12 @@ return [
         'edit' => 'Edit category',
         'detail' => 'Detail category',
     ],
+    'label' => [
+        'no_data' => [
+            'fetch' => "No category data yet",
+            'search' => ":keyword category not found",
+        ]
+        ],
     'form_control' => [
         'input' => [
             'title' => [
@@ -55,7 +61,7 @@ return [
             'value' => 'Save'
         ],
         'edit' => [
-            'value' => 'Edit'
+            'value' => 'Update'
         ],
         'delete' => [
             'value' => 'Delete'

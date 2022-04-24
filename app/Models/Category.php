@@ -15,6 +15,11 @@ class Category extends Model
         
         return $query->whereNull('parent_id');
     }
+    // search
+    public function scopeSearch($query,$title){
+        
+        return $query->where('title', 'LIKE', "%{$title}%");
+    }
 
     public function parent()
     {

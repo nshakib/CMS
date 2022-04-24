@@ -13,7 +13,8 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{ route('categories.store') }}" method="POST">
+                    <form action="{{ route('categories.update', ['category' => $category]) }}" method="POST">
+                        @method('PUT')
                         @csrf
                         <!-- title -->
                         <div class="form-group">
