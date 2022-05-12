@@ -1,11 +1,11 @@
 @extends('layouts.dashboard')
 
 @section('title')
-    {{ trans('tags.title.create') }}
+    {{ trans('tags.title.edit') }}
 @endsection
 
 @section('breadcrumbs')
-    {{ Breadcrumbs::render('add_tag') }}
+    {{ Breadcrumbs::render('edit_tag', $tag) }}
 @endsection
 
 @section('content')
@@ -13,14 +13,15 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{ route('tags.store') }}" method="POST">
+                    <form action="{{ route('tags.update', ['tag' => $tag]) }}" method="POST">
                         @csrf
+                        @method('PUT')
                         <!-- title -->
                         <div class="form-group">
                             <label for="input_tag_title" class="font-weight-bold">
                                 {{ trans('tags.form_control.input.title.label') }}
                             </label>
-                            <input id="input_tag_title" value="{{ old('title') }}" name="title" type="text" 
+                            <input id="input_tag_title" value="{{ old('title', $tag->title) }}" name="title" type="text" 
                             class="form-control @error('title') is-invalid @enderror"
                                 placeholder="{{ trans('tags.form_control.input.title.placeholder') }}" />
 
@@ -37,7 +38,7 @@
                             <label for="input_tag_slug"  class="font-weight-bold">
                                 {{ trans('tags.form_control.input.slug.label') }}
                             </label>
-                            <input id="input_tag_slug" value="{{ old('slug') }}" name="slug" type="text" 
+                            <input id="input_tag_slug" value="{{ old('slug', $tag->slug) }}" name="slug" type="text" 
                             class="form-control @error('slug') is-invalid @enderror"
                                 placeholder="{{ trans('tags.form_control.input.slug.placeholder') }}" readonly />
 
@@ -51,10 +52,10 @@
                         </div>
                         <div class="float-right">
                             <a class="btn btn-warning px-4 mx-2" href="{{ route('tags.index') }}">
-                                {{ trans('tags.button.cancel.value') }}
+                                {{ trans('tags.button.back.value') }}
                             </a>
                             <button type="submit" class="btn btn-primary float-right px-4">
-                                {{ trans('tags.button.save.value') }}
+                                {{ trans('tags.button.edit.value') }}
                             </button>
                         </div>
                     </form>
