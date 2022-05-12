@@ -37,7 +37,7 @@
                             <label for="input_tag_slug"  class="font-weight-bold">
                                 {{ trans('tags.form_control.input.slug.label') }}
                             </label>
-                            <input id="input_tag_slug" alue="{{ old('slug') }}" name="slug" type="text" 
+                            <input id="input_tag_slug" value="{{ old('slug') }}" name="slug" type="text" 
                             class="form-control @error('slug') is-invalid @enderror"
                                 placeholder="{{ trans('tags.form_control.input.slug.placeholder') }}" readonly />
 
@@ -68,15 +68,16 @@
     <script>
         $(document).ready(function() {
             const generateSlug = (value) => {
+                return value.trim()
                .toLowerCase()
                .replace(/[^a-z\d-]/gi, '-')
                .replace(/-+/g, '-').replace(/^-|-$/g, "");
             }
 
             //Event slug
-            $("input_tag_title").change(function(event)){
+            $("#input_tag_title").change(function(event){
                $("#input_tag_slug").val(generateSlug(event.target.value))
-            }
+            });
         });
     </script>
 @endpush
