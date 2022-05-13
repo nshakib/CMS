@@ -16,9 +16,10 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-6">
-                            <form action="" method="GET">
+                            {{-- Form : search --}}
+                            <form action="{{ route('tags.index') }}" method="GET">
                                 <div class="input-group">
-                                    <input name="keyword" type="search" class="form-control"
+                                    <input name="keyword" value="{{ request()->get('keyword') }}" type="search" class="form-control"
                                         placeholder="{{ trans('tags.form_control.input.search.placeholder') }}">
                                     <div class="input-group-append">
                                         <button class="btn btn-primary" type="submit">
@@ -71,12 +72,21 @@
                         @else
                             <p> 
                                 <strong>
-                                    {{ trans('tags.label.no_data.fetch') }}
+                                    @if (request()->get('keyword'))
+                                        {{ trans('tags.label.no_data.search', ['keyword' => request()->get('keyword')]) }}
+                                    @else
+                                        {{ trans('tags.label.no_data.fetch') }}
+                                    @endif
                                 </strong>
                             </p>
                         @endif
                     </ul>
                 </div>
+                @if ($tags->hasPages())
+                    <div class="card-footer">
+                        {{ $tags->links('vendor.pagination.bootstrap-4') }}
+                    </div>
+                @endif
             </div>
         </div>
     </div>

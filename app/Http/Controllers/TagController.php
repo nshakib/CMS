@@ -14,9 +14,11 @@ class TagController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $tags = Tag::all();
+        $tags = $request->get('keyword')
+        ? Tag::search($request->keyword)->paginate(5)
+        : Tag::paginate(5);
         return view('tags.index',compact('tags'));
     }
 
