@@ -4,6 +4,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -42,6 +43,9 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['web','auth']], function
 
    //Tags
     Route::resource('/tags',TagController::class)->except('show');
+
+    //Post
+    Route::resource('/posts',PostController::class);
 
     //file manager
     Route::group(['prefix' => 'filemanager'], function () {
