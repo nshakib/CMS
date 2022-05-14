@@ -73,12 +73,7 @@
                          </label>
                          <div class="form-control overflow-auto" style="height: 886px">
                             <!-- List category -->
-                            <ul class="pl-1 my-1" style="list-style: none;">
-                               <li class="form-group form-check my-1">
-                                  <input class="form-check-input" type="checkbox" name="category[]">
-                                  <label class="form-check-label">Check me out</label>
-                               </li>
-                            </ul>
+                            @include('posts._category-list', ['categories'=>$categories])
                             <!-- List category -->
                          </div>
                       </div>
@@ -128,6 +123,15 @@
   </div>
 @endsection
 
+@push('javascript-internal')
+
+  {{-- File manager button --}}
+    <script src="{{ asset('vendor/laravel-filemanager/js/stand-alone-button.js') }}"></script>
+   
+   // tinymce5
+    <script src="{{ asset('vendor/tinymce5/jquery.tinymce.min.js') }}"></script>
+    <script src="{{ asset('vendor/tinymce5/tinymce.min.js') }}"></script>
+@endpush
 
 @push('javascript-internal')
     <script>
@@ -144,6 +148,27 @@
                 .replace(/^-|-$/g, "")
             );
             });
+
+            //event : input thumbnail
+            $('#button_post_thumbnail').filemanager('image');
+
+            // Text-editor content(Tinymce5)
+            $("#input_post_content").tinymce({
+               relative_urls: false,
+               language: "en",
+               plugins: [
+                  "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+                  "searchreplace wordcount visualblocks visualchars code fullscreen",
+                  "insertdatetime media nonbreaking save table directionality",
+                  "emoticons template paste textpattern",
+               ],
+               toolbar1: "fullscreen preview",
+               toolbar2:
+                  "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media",
+               });
+
         });
+
+
     </script>
 @endpush
