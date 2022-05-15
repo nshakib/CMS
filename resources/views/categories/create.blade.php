@@ -118,6 +118,7 @@
 @endpush
 
 @push('javascript-external')
+    {{-- Select 2 --}}
     <script src="{{ asset('vendor/select2/js/select2.min.js') }}"></script>
     <script src="{{ asset('vendor/select2/js/i18n/' . app()->getLocale() . '.js') }}"></script>
     {{-- File manager --}}
