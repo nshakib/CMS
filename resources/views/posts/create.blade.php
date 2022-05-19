@@ -188,7 +188,7 @@
                             {{ trans('posts.button.back.value') }}
                             </a>
                          <button type="submit" class="btn btn-primary px-4">
-                            {{ trans('posts.button.edit.value') }}
+                            {{ trans('posts.button.create.value') }}
                          </button>
                       </div>
                    </div>
