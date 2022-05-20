@@ -37,9 +37,10 @@
                             </div>
                          </div>
                       </div>
+                      {{-- filter search --}}
                       <div class="col">
                          <div class="input-group mx-1">
-                            <input name="keyword" type="search" class="form-control" 
+                            <input name="keyword" value="{{ request()->get('keyword') }}" type="search" class="form-control" 
                             placeholder="{{ trans('posts.form_control.input.search.placeholder') }}">
                             <div class="input-group-append">
                                <button class="btn btn-primary" type="submit">
@@ -93,8 +94,16 @@
                     </div>
                  </div>
                 @empty
+
                     <p>
-                        {{ trans('posts.label.no_data.fetch') }}
+                       <strong>
+                          @if (request()->get('keyword'))
+                          {{ trans('posts.label.no_data.search', ['keyword' => request()->get('keyword')]) }}
+                          @else
+                          {{ trans('posts.label.no_data.fetch') }}
+                          @endif
+                       </strong>
+                        
                     </p>
                 @endforelse
              </ul>

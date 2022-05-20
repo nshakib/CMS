@@ -28,6 +28,13 @@ class Post extends Model
     {
         return $this->belongsToMany(Category::class)->withTimestamps();
     }
+
+    public function scopeSearch($query, $title)
+    {
+        return $query->where('title', 'LIKE', "%{$title}%");
+    }
+
+
     
     public function scopePublish($query)
     {
