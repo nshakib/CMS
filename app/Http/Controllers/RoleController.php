@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 // use App\Models\Role;
-use Spatie\Permission\Model\Role;
+use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
 
 class RoleController extends Controller
@@ -15,7 +15,9 @@ class RoleController extends Controller
      */
     public function index()
     {
-        return view('roles.index');
+        return view('roles.index',[
+            'roles'=> Role::all(),
+        ]);
     }
 
     /**
@@ -47,7 +49,11 @@ class RoleController extends Controller
      */
     public function show(Role $role)
     {
-        //
+        return view('roles.details',[
+            'role'=> $role,
+            'authorities' => config('permission.authorities'),
+            'rolePermissions' => $role->permissions->pluck('name')->toArray()
+        ]);
     }
 
     /**
