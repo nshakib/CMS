@@ -13,6 +13,7 @@
         "laravel/tinker": "^2.7",
         "laravel/ui": "^3.4",
         "realrashid/sweet-alert": "^5.0",
+        "spatie/laravel-permission": "^5.5",
         "unisharp/laravel-filemanager": "^2.4"
     },
     "require-dev": {
