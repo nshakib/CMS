@@ -12,20 +12,29 @@
 <div class="row">
     <div class="col-md-12">
        <div class="card">
-          <form action="" method="POST">
+          <form action="{{ route('roles.store') }}" method="POST">
+            @csrf
              <div class="card-body">
                 <div class="form-group">
                    <label for="input_role_name" class="font-weight-bold">
                      {{trans('roles.form_control.input.name.label')}}
                    </label>
-                   <input id="input_role_name" value="" name="name" type="text" class="form-control" readonly />
+                   <input id="input_role_name" value="{{ old('name') }}" name="name" type="text" 
+                   class="form-control @error('name') is-invalid @enderror" readonly />
+                   @error('name')
+                       <span>
+                           <strong class="invalid-fedback">
+                               {{ trans( $message ) }}
+                           </strong>
+                       </span>
+                   @enderror
                 </div>
                 <!-- permission -->
                 <div class="form-group">
                    <label for="input_role_permission" class="font-weight-bold">
                      {{trans('roles.form_control.input.permission.label')}}
                    </label>
-                   <div class="form-control overflow-auto h-100 " id="input_role_permission">
+                   <div class="form-control overflow-auto h-100 @error('permissions') is-invalid @enderror" id="input_role_permission">
                       <div class="row">
 
                         @foreach ($authorities as $manageName => $permissions)
@@ -38,8 +47,16 @@
                             @foreach ($permissions as $permission)
                             <li class="list-group-item">
                                 <div class="form-check">
-                                   <input id="{{ $permission }}" name="permissions[]" class="form-check-input" type="checkbox" 
-                                        value="{{ $permission }}">
+
+                                    @if (old('permissions'))
+                                        <input id="{{ $permission }}" name="permissions[]" class="form-check-input" \
+                                        type="checkbox" value="{{ $permission }}" 
+                                        {{ in_array($permissions. old('permission')) ? "checked" : null }}>
+                                    @else
+                                        <input id="{{ $permission }}" name="permissions[]" class="form-check-input" \
+                                        type="checkbox" value="{{ $permission }}">
+                                    @endif
+                                   
                                    <label for="{{ $permission }}" class="form-check-label">
                                       {{ trans("permissions.{$permission}") }}
                                    </label>
@@ -53,6 +70,13 @@
                          
                          <!-- list manage name:end  -->
                       </div>
+                        @error('permissions')
+                        <span>
+                            <strong class="invalid-fedback">
+                                {{ trans( $message ) }}
+                            </strong>
+                        </span>
+                  @enderror
                    </div>
                 </div>
                 <div class="float-right mb-4">
