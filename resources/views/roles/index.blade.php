@@ -28,7 +28,7 @@
                    </form>
                 </div>
                 <div class="col-md-6">
-                   <a href="#" class="btn btn-primary float-right" role="button">
+                   <a href="{{ route('roles.create') }}" class="btn btn-primary float-right" role="button">
                       Add new
                       <i class="fas fa-plus-square"></i>
                    </a>
