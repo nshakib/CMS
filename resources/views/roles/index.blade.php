@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('title')
-   {{ trans('role.title.detail') }}
+   {{ trans('roles.title.detail') }}
 @endsection
 
 @section('breadcrumbs')
@@ -52,7 +52,7 @@
                            <i class="fas fa-eye"></i>
                            </a>
                            <!-- edit -->
-                           <a class="btn btn-sm btn-info" role="button">
+                           <a class="btn btn-sm btn-info" href="{{ route('roles.edit', ['role'=>$role]) }}" role="button">
                               <i class="fas fa-edit"></i>
                            </a>
                            <!-- delete -->

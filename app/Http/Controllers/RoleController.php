@@ -79,7 +79,11 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        //
+        return view('roles.edit',[
+            'role' => $role,
+            'authorities' => config('permission.authorities'),
+            'permissionCheked' => $role->permissions->pluck('name')->toArray()
+        ]);
     }
 
     /**

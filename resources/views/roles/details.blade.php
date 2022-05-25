@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('title')
-    {{ trans('role.title.create') }}
+    {{ trans('roles.title.create') }}
 @endsection
 
 @section('breadcrumbs')
@@ -15,14 +15,14 @@
           <div class="card-body">
              <div class="form-group">
                 <label for="input_role_name" class="font-weight-bold">
-                   {{ trans('role.form_control.input.name.label') }}
+                   {{ trans('roles.form_control.input.name.label') }}
                 </label>
                 <input id="input_role_name" value="{{ $role->name }}" name="name" type="text" class="form-control" readonly />
              </div>
              <!-- permission -->
              <div class="form-group">
                 <label for="input_role_permission" class="font-weight-bold">
-                    {{ trans('role.form_control.input.permission.label') }}
+                    {{ trans('roles.form_control.input.permission.label') }}
                 </label>
                 <div class="row">
                    <!-- list manage name:start -->
@@ -52,7 +52,7 @@
                    @empty
                        <p>
                            <strong>
-                               {{ trans('role.label.no_data.fetch') }}
+                               {{ trans('roles.label.no_data.fetch') }}
                            </strong>
                        </p>
                    @endforelse
@@ -63,7 +63,7 @@
              <!-- button  -->
              <div class="d-flex justify-content-end">
                 <a href="{{ route('roles.index') }}" class="btn btn-primary mx-1" role="button">
-                   {{ trans('role.button.back.value') }}
+                   {{ trans('roles.button.back.value') }}
                 </a>
              </div>
           </div>
