@@ -4,77 +4,78 @@ language : Bangla
 */
 return [
     'title' => [
-        'index' => 'Roles',
-        'create' => 'Add role',
-        'edit' => 'Edit role',
-        'detail' => 'Detail role',
+        'index' => 'ভুমিকা',
+         'create' => 'ভুমিকা যোগ করুন',
+         'edit' => 'ভুমিকা সম্পাদনা করুন',
+        'detail' => 'বিশদ ভূমিকা',
     ],
     'form_control' => [
         'input' => [
             'name' => [
-                'label' => 'Name',
-                'placeholder' => 'Enter name',
-                'attribute' => 'name'
+                'label' => 'নাম',
+                 'placeholder' => 'নাম লিখুন',
+                 'attribute' => 'নাম'
             ],
             'permission' => [
-                'label' => 'Permission',
-                'placeholder' => 'Choose permission',
-                'attribute' => 'permission'
+                'label' => 'অনুমতি',
+                 'placeholder' => 'অনুমতি চয়ন করুন',
+                 'attribute' => 'অনুমতি'
             ],
             'search' => [
-                'label' => 'Search',
-                'placeholder' => 'Search for roles',
-                'attribute' => 'search'
+                'label' => 'অনুসন্ধান',
+                 'placeholder' => 'ভূমিকা অনুসন্ধান করুন',
+                 'attribute' => 'অনুসন্ধান'
             ]
         ],
     ],
     'label' => [
         'no_data' => [
-            'fetch' => "Roles Not Yet Available!",
-            'search' => ":keyword role not found",
+            'fetch' => "ভূমিকাগুলি এখনও উপলব্ধ নয়!",
+             'search' => ":কীওয়ার্ডের ভূমিকা পাওয়া যায়নি",
             ]
     ],
     'button' => [
         'create' => [
-            'value' => 'Add'
+            'value' => 'যোগ করুন'
         ],
         'save' => [
-            'value' => 'Save'
+            'value' => 'সংরক্ষণ করুন'
         ],
         'edit' => [
-            'value' => 'Edit'
+            'value' => 'সম্পাদনা করুন'
         ],
         'delete' => [
-            'value' => 'Delete'
+            'value' => 'মুছুন'
         ],
         'cancel' => [
-            'value' => 'Cancel'
+            'value' => 'বাতিল'
         ],
+
         'back' => [
-            'value' => 'Back'
-        ],
+            'value' => 'পিছনে'
+        ]
     ],
     'alert' => [
         'create' => [
             'title' => 'Add role',
             'message' => [
-                'success' => "Category saved successfully.",
-                'error' => "An error occurred while saving the role. :error"
+                'success' => "বিভাগ সফলভাবে সংরক্ষিত হয়েছে।",
+                 'error' => "ভুমিকাটি সংরক্ষণ করার সময় একটি ত্রুটি ঘটেছে। :error"
             ]
         ],
         'update' => [
-            'title' => 'Edit role',
+            'title' => 'ভুমিকা সম্পাদনা করুন',
             'message' => [
-                'success' => "Category updated successfully.",
-                'error' => "An error occurred while updating the role. :error"
+                'success' => "বিভাগ সফলভাবে আপডেট হয়েছে।",
+                 'error' => "ভুমিকা আপডেট করার সময় একটি ত্রুটি ঘটেছে। :error"
             ]
         ],
         'delete' => [
-            'title' => 'Delete role',
+            'title' => 'ভুমিকা মুছুন',
             'message' => [
-                'confirm' => "Are you sure you want to delete the :name role?",
-                'success' => "Category deleted successfully.",
-                'error' => "An error occurred while deleting the role. :error"
+                'confirm' => "আপনি কি নিশ্চিত যে আপনি :নাম ভূমিকাটি মুছে ফেলতে চান?",
+                 'success' => "বিভাগ সফলভাবে মুছে ফেলা হয়েছে।",
+                 'error' => "ভুমিকাটি মুছে ফেলার সময় একটি ত্রুটি ঘটেছে। :error"
             ]
         ],
     ]
