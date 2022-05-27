@@ -167,7 +167,19 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
-        
+        try {
+            $role->delete();
+            Alert::success(
+                trans('roles.alert.delete.title'),
+                trans('roles.alert.delete.message.success'),
+            );
+        } catch (\Throwable $th) {
+            Alert::error(
+                trans('roles.alert.delete.title'),
+                trans('roles.alert.delete.message.error', ['error' => $th->getMessage()])
+            );
+        }
+        return redirect()->back();
     }
 
     private function attributes()
