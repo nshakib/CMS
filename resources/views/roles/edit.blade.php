@@ -21,7 +21,7 @@
                   {{trans('roles.form_control.input.name.label')}}
                 </label>
                 <input id="input_role_name" value="{{ old('name', $role->name) }}" name="name" type="text" 
-                class="form-control @error('name') is-invalid @enderror" readonly />
+                class="form-control @error('name') is-invalid @enderror" />
                 @error('name')
                     <span>
                         <strong class="invalid-fedback">
