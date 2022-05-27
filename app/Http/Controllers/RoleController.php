@@ -167,7 +167,9 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
+        DB::beginTransaction();
         try {
+            $role->revokePermissionTo($role->permissions->pluck('name')->toArray());
             $role->delete();
             Alert::success(
                 trans('roles.alert.delete.title'),
