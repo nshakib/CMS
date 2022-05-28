@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 // use App\Models\Role;
+
+use App\Models\User;
 use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -11,6 +13,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class RoleController extends Controller
 {
+    private $perpage = 10;
     /**
      * Display a listing of the resource.
      *
@@ -20,13 +23,22 @@ class RoleController extends Controller
     {
         $roles = [];
         if($request->has('keyword')){
-            $roles =  Role::where('name','LIKE', "%{$request->keyword}%")->get(); 
+            $roles =  Role::where('name','LIKE', "%{$request->keyword}%")->paginate($this->perpage); 
         }else{
-            $roles = Role::All();
+            $roles = Role::paginate($this->perpage);
         }
         return view('roles.index',[
-            'roles'=> $roles
+            'roles'=> $roles->appends(['keyword'=>$request->keyword])
         ]);
+    }
+
+    public function select(Request $request)
+    {
+        $roles = Role::select('id', 'name')->limit(7);
+        if($request->has('q')){
+            $roles->where('name', 'LIKE', "%{$request->q}%");
+        }
+        return response()->json($roles->get());
     }
 
     /**
@@ -173,6 +185,14 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
+        if(User::role($role->name)->count()){
+            Alert::warning(
+                trans('roles.alert.delete.title'),
+                trans('roles.alert.delete.message.warning',['name'=>$role->name]),
+            );
+            return redirect()->route('roles.index');
+        }
+
         DB::beginTransaction();
         try {
             $role->revokePermissionTo($role->permissions->pluck('name')->toArray());

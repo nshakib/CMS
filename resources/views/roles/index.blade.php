@@ -5,7 +5,7 @@
 @endsection
 
 @section('breadcrumbs')
-   {{ Breadcrumbs::render('posts') }}
+   {{ Breadcrumbs::render('roles') }}
 @endsection
 
 @section('content')
@@ -84,6 +84,11 @@
                      </p>
                   @endforelse
                   <!-- list role -->
+                  @if ($roles->hasPages())
+                     <div class="card-footer">
+                        {{ $roles->links('vendor.pagination.bootstrap-4') }}
+                     </div>
+                  @endif
              </ul>
           </div>
        </div>

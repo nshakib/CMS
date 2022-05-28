@@ -7,6 +7,7 @@ use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -57,7 +58,11 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['web','auth']], function
     });
 
     //Roles
+    Route::get('/roles/select',[RoleController::class,'select'])->name('roles.select');
     Route::resource('/roles',RoleController::class);
+
+    //User
+    Route::resource('/users',UserController::class)->except('show');
 
  
 });

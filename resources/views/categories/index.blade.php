@@ -30,10 +30,14 @@
                             </form>
                         </div>
                         <div class="col-md-6">
-                            <a href="{{ route('categories.create') }}" class="btn btn-primary float-right" role="button">
-                                {{ trans('categories.button.create.value') }}
-                                <i class="fas fa-plus-square"></i>
-                            </a>
+                            {{-- create category --}}
+                            @can('category_create')
+                                <a href="{{ route('categories.create') }}" class="btn btn-primary float-right" role="button">
+                                    {{ trans('categories.button.create.value') }}
+                                    <i class="fas fa-plus-square"></i>
+                                </a>
+                            @endcan
+                            
                         </div>
                     </div>
                 </div>
