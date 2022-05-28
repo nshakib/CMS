@@ -50,24 +50,32 @@
                         </label>
                         <div>
                            <!-- detail -->
-                           <a href="{{ route('roles.show', ['role'=> $role]) }}" class="btn btn-sm btn-primary"
-                           role="button">
-                           <i class="fas fa-eye"></i>
-                           </a>
+                           @can('role_detail')
+                              <a href="{{ route('roles.show', ['role'=> $role]) }}" class="btn btn-sm btn-primary"
+                                 role="button">
+                                 <i class="fas fa-eye"></i>
+                              </a>
+                           @endcan
+                           
                            <!-- edit -->
-                           <a class="btn btn-sm btn-info" href="{{ route('roles.edit', ['role'=>$role]) }}" role="button">
-                              <i class="fas fa-edit"></i>
-                           </a>
+                           @can('role_update')
+                              <a class="btn btn-sm btn-info" href="{{ route('roles.edit', ['role'=>$role]) }}" role="button">
+                                 <i class="fas fa-edit"></i>
+                              </a>
+                           @endcan
+                           
                            <!-- delete -->
-                           <form class="d-inline" role="alert" 
-                            alert-text="{{ trans('roles.alert.delete.message.confirm', ['name' => $role->name]) }}" 
-                            action="{{ route('roles.destroy', $role->id) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
+                           @can('role_delete')
+                              <form class="d-inline" role="alert" 
+                              alert-text="{{ trans('roles.alert.delete.message.confirm', ['name' => $role->name]) }}" 
+                              action="{{ route('roles.destroy', $role->id) }}" method="POST">
+                              @csrf
+                              @method('DELETE')
                               <button type="submit" class="btn btn-sm btn-danger">
                                  <i class="fas fa-trash"></i>
                               </button>
                            </form>
+                           @endcan
                         </div>
                      </li>
                   @empty
